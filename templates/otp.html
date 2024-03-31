@@ -109,14 +109,17 @@
         </defs>
       </svg>
       <div class="title">Verification Code</div>
-      <p>We have sent a verification code to your mobile number</p>
+      <p>We have sent a verification code to your email</p>
       <div id="inputs">
         <input id="input1" type="text" maxlength="1" />
         <input id="input2" type="text" maxlength="1" />
         <input id="input3" type="text" maxlength="1" />
         <input id="input4" type="text" maxlength="1" />
       </div>
-      <button>Submit</button>
+      <p id="resendtext">
+        Resend OTP in <span id="countdowntimer">30 </span> Seconds
+      </p>
+      <button formaction="{{ url_for('static', forname='') }}">Submit</button>
     </section>
     <script src="/static/js/otp.js"></script>
   </body>
