@@ -8,8 +8,8 @@
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: #000000;
+    background: radial-gradient(farthest-corner at 40px 40px,rgb(0, 0, 62) 0%,rgb(0, 0, 0) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
