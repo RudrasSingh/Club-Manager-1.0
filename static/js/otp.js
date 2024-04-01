@@ -22,3 +22,21 @@ function addListener(input) {
     }
   });
 }
+
+// OTP Timer
+var timeleft = 30; 
+var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0) {
+        clearInterval(downloadTimer);
+        document.getElementById("resendtext").innerHTML = '<a href="#" onclick="resendOTP()">Resend Now</a>';
+    }
+}, 1000);
+
+
+//incase u require
+// function resendOTP() {
+//     reload the page for resend option
+//     location.reload();
+// }
