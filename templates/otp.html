@@ -119,7 +119,12 @@
       <p id="resendtext">
         Resend OTP in <span id="countdowntimer">30 </span> Seconds
       </p>
-      <button formaction="{{ url_for('static', forname='') }}">Submit</button>
+      <button
+        onclick="redirect()"
+        formaction="{{ url_for('static', forname='') }}"
+      >
+        Submit
+      </button>
     </section>
     <script src="/static/js/otp.js"></script>
   </body>

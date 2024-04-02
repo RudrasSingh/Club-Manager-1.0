@@ -23,20 +23,25 @@ function addListener(input) {
   });
 }
 
-// OTP Timer
-var timeleft = 30; 
-var downloadTimer = setInterval(function(){
-    timeleft--;
-    document.getElementById("countdowntimer").textContent = timeleft;
-    if(timeleft <= 0) {
-        clearInterval(downloadTimer);
-        document.getElementById("resendtext").innerHTML = '<a href="#" onclick="resendOTP()">Resend Now</a>';
+var timeleft = 30;
+    var downloadTimer = setInterval(settimerrr, 1000);
+
+    function settimerrr() {
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+            document.getElementById("resendtext").innerHTML = '<a href="#" onclick="resendOTP()">Resend Now</a>';
+        }
     }
-}, 1000);
 
+    function resendOTP() {
+        timeleft = 30; 
+        document.getElementById("resendtext").innerHTML = "Resend OTP in <span id='countdowntimer'>30</span> Seconds";
+        downloadTimer = setInterval(settimerrr, 1000);
+    }
 
-//incase u require
-// function resendOTP() {
-//     reload the page for resend option
-//     location.reload();
-// }
+function redirect()
+{
+  window.location.href = "{{ url_for('static', forname='') }}";
+}
