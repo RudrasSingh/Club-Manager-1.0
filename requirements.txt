@@ -32,6 +32,7 @@ python-jwt==4.1.0
 requests==2.29.0
 requests-toolbelt==0.10.1
 rsa==4.9
+setuptools==69.2.0
 six==1.16.0
 typing_extensions==4.10.0
 uritemplate==4.1.1

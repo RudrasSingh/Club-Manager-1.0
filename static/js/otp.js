@@ -22,6 +22,15 @@ function addListener(input) {
     }
   });
 }
+const submit = document.getElementById("submit");
+
+submit.addEventListener('click', () => {
+    container.classList.add("active");
+});
+
+submit.addEventListener('click', () => {
+    container.classList.remove("active");
+});
 
 // OTP Timer
 var timeleft = 30; 

@@ -112,14 +112,19 @@
       <p>We have sent a verification code to your email</p>
       <div id="inputs">
         <input id="input1" type="text" maxlength="1" />
-        <input id="input2" type="text" maxlength="1" />
+        <!-- <input id="input2" type="text" maxlength="1" /> -->
         <input id="input3" type="text" maxlength="1" />
         <input id="input4" type="text" maxlength="1" />
       </div>
       <p id="resendtext">
         Resend OTP in <span id="countdowntimer">30 </span> Seconds
       </p>
-      <button formaction="{{ url_for('static', forname='') }}">Submit</button>
+      <a>
+
+        <button id="submit" formaction="{{ url_for('signupPage')  }}" </button>Submit</button>
+
+      </a>
+      
     </section>
     <script src="/static/js/otp.js"></script>
   </body>
