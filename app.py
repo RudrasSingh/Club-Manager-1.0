@@ -31,7 +31,25 @@ def otp_verification():
 def homepage():
     return redirect('index.html')
 
+@app.route('/home')
+def signupPage():
+    return render_template('') #home page link to be added 
 
+@app.route('/about')
+def signupPage():
+    return render_template('')  #about page link to be added
+
+@app.route('/upcoming_events')
+def signupPage():
+    return render_template('')  #upcoming events page link to be added 
+
+@app.route('/team')
+def signupPage():
+    return render_template('')  #team page link to be added 
+
+@app.route('/upcoming_events')
+def signupPage():
+    return render_template('')  #upcoming events page link to be added 
 
 if __name__ == "__main__":
     app.run(debug=True)
