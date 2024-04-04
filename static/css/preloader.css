@@ -1,0 +1,28 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .svgbox {
+    --blue: rgb(148, 66, 63);
+    stroke: var(--blue);
+    stroke-width: 5;
+    fill: none;
+    stroke-dasharray: 50, 14;
+    stroke-dashoffset: 192;
+    animation: dash_animation 1.4s linear infinite;
+  }
+  
+  @keyframes dash_animation {
+    72.5% {
+      opacity: 1;
+    }
+    to {
+      stroke-dashoffset: 1;
+    }
+  }
+
+  
+  

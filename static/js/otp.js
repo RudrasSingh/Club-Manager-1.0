@@ -50,10 +50,6 @@ function redirect()
 
   // Check if all input fields are filled
   if (input1 !== "" && input2 !== "" && input3 !== "" && input4 !== "") {
-    // Redirect or submit the form
-    // Example:
-    // window.location.href = "/submit";
-    // document.getElementById("otpForm").submit(); 
     window.location.href = "{{ url_for('static', forname='') }}";
   } else {
     // Alert the user to fill all input fields
