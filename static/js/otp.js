@@ -43,5 +43,23 @@ var timeleft = 30;
 
 function redirect()
 {
-  window.location.href = "{{ url_for('static', forname='') }}";
+  var input1 = document.getElementById("input1").value;
+  var input2 = document.getElementById("input2").value;
+  var input3 = document.getElementById("input3").value;
+  var input4 = document.getElementById("input4").value;
+
+  // Check if all input fields are filled
+  if (input1 !== "" && input2 !== "" && input3 !== "" && input4 !== "") {
+    // Redirect or submit the form
+    // Example:
+    // window.location.href = "/submit";
+    // document.getElementById("otpForm").submit(); 
+    window.location.href = "{{ url_for('static', forname='') }}";
+  } else {
+    // Alert the user to fill all input fields
+    alert("Please fill all fields of the OTP.");
+  }
+ 
 }
+
+
