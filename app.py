@@ -1,5 +1,6 @@
 from flask import *
 from pyrebase import *
+from time import sleep
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
@@ -28,6 +29,8 @@ def signupPage():
 def otp_verification():
     return render_template('otp.html')
 
+
+@app.route('/')
 def homepage():
     return redirect('index.html')
 
