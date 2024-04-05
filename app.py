@@ -21,6 +21,10 @@ app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this vir
 def landingPage():
     return render_template('index.html')
 
+@app.route('/aboutus')
+def aboutusPage():
+    return render_template('about.html')
+
 @app.route('/login')
 def signupPage():
     return render_template('signup.html')
@@ -33,6 +37,7 @@ def otp_verification():
 @app.route('/')
 def homepage():
     return redirect('index.html')
+
 
 
 
