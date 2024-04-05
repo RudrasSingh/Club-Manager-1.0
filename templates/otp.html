@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Otp Request</title>
-    <link rel="stylesheet" href="../static/css/otp-style.css">
-    <style>
-        body, section {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="/static/css/otp-style.css" />
+  </head>
+  <body>
     <section>
-        <div class="title">OTP</div>
-        <svgd
-            width="250"
-            height="200"
-            viewBox="0 0 292 208"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <!-- Your SVG code here -->
-        </svg>
-        <div class="title">Verification Code</div>
-        <p>We have sent a verification code to your email</p>
-        <form action="{{ url_for('static', forname='') }}" method="POST">
-            <div id="inputs">
-                <input id="input1" type="text" maxlength="1" />
-                <input id="input2" type="text" maxlength="1" />
-                <input id="input3" type="text" maxlength="1" />
-                <input id="input4" type="text" maxlength="1" />
-            </div>
-            <p id="resendtext">Resend OTP in <span id="countdowntimer">30</span> Seconds</p>
-            <button type="submit">Submit</button>
-        </form>
-<<<<<<< HEAD
-=======
       <div class="title">OTP</div>
       <svg
         width="250"
@@ -141,7 +112,7 @@
       <p>We have sent a verification code to your email</p>
       <div id="inputs">
         <input id="input1" type="text" maxlength="1" />
-        <!-- <input id="input2" type="text" maxlength="1" /> -->
+        <input id="input2" type="text" maxlength="1" />
         <input id="input3" type="text" maxlength="1" />
         <input id="input4" type="text" maxlength="1" />
       </div>
@@ -150,24 +121,11 @@
       </p>
       <button
         onclick="redirect()"
-        formaction="{{ url_for('static', forname='') }}"
+        formaction="{{ url_for('static', filename='') }}"
       >
         Submit
       </button>
->>>>>>> 398caad814c2ed910c80833ecf16d418b8f70010
     </section>
-    <script src="../static/js/otp.js"></script>
-    <script>
-        // JavaScript code for countdown timer
-        var count = 30;
-        var timer = setInterval(function() {
-            count--;
-            document.getElementById("countdowntimer").innerText = count;
-            if (count === 0) {
-                clearInterval(timer);
-                // Code to handle resend OTP or any other action
-            }
-        }, 1000);
-    </script>
-</body>
+    <script src="/static/js/otp.js"></script>
+  </body>
 </html>
