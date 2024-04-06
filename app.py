@@ -1,6 +1,5 @@
 from flask import *
 from pyrebase import *
-from time import sleep
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
@@ -17,7 +16,7 @@ app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this vir
 
 
 #------------------- Routing ------------------------
-@app.route('/')
+@app.route('/abhi nahi')
 def landingPage():
     return render_template('index.html')
 
