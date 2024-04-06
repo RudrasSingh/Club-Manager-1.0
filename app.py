@@ -41,7 +41,23 @@ def otp_verification():
 
 @app.route('/')
 def homepage():
-    return redirect('index.html')
+    return redirect('home.html') #changed the index.html to home.html
+
+#for the dynamic events part
+
+@app.route('/')
+def index():
+    # Data that you want to pass to the template
+    projects = [
+        {
+            'name': 'ENVISAGE',
+            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+            'image_url': '/src/jpg/Event posters (1).png',
+            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+        }
+        # Add more projects as needed
+    ]
+    return render_template('home.html', projects=projects)
 
 
 
