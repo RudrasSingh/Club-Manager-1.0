@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..\static\css\dashboard.css">
+</head>
+<body>
+    <main class="main-box">
+        <aside class="sidebar">
+            <a href="..\templates\dashboard.html"><div class="logo-type">CLUBSYNC</div></a>
+          <nav class="menu-box">
+            <a href="#"
+              ><li class="item-menu">
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/star.svg"
+                />Event
+              </li></a
+            >
+            <a href="#"
+              ><li class="item-menu">
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/ticket.svg"
+                />Ticket
+              </li></a
+            >
+            <a href="#"
+              ><li class="item-menu">
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/payments.svg"
+                />Payments
+              </li></a
+            >
+            <a href="#"
+              ><li class="item-menu">
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/favorite.svg"
+                />Favorite
+              </li></a
+            >
+            <a href="#"
+              ><li class="item-menu">
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/setting.svg"
+                />Setting
+              </li></a
+            >
+          </nav>
+          <a href="#"
+            ><div class="logout">
+              <img
+                src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/logout.svg"
+              />Logout
+            </div></a
+          >
+        </aside>
+        <div class="back-sidebar" id="back-sidebar"></div>
+        <div class="main">
+          <div class="head-title">
+            <header class="header-main">
+              <div class="menu">
+                <a href="..\templates\dashboard.html">
+                    <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/menu.svg"
+                  id="menu"
+                />
+                </a>
+              </div>
+              <div class="operation-info">
+                <a href="#" class="btn-operation"
+                  ><img
+                    src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/bag.svg"
+                /></a>
+                <a href="#" class="btn-operation"
+                  ><img
+                    src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/notification.svg"
+                /></a>
+                <img
+                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/default.jpeg"
+                  alt="profile"
+                  class="profile"
+                />
+              </div>
+            </header>
+            <h1 class="title-page">Discover the best event</h1>
+          </div>
+          
+            <div class="event">
+                <section id="venue">
+                    <h1>Register your events</h1>
+                    <form>
+                      <fieldset>
+                        <legend class="details">Details</legend>
+                        <div class="double-input">
+                            <div class="form-input-container">
+                                <label for="event-name">Enter Your Event:</label>
+                                <input type="text" id="event-name" name="event-name" required />
+                            </div>
+                            
+                          
+                        </div>
+                        <div class="double-input">
+                          <div class="form-input-container date-select">
+                            <label for="Date">Start Date</label>
+                            <input type="date" name="Date" id="" />
+                          </div>
+                          <div class="form-input-container date-select">
+                            <label for="Date">End Date</label>
+                            <input type="date" name="Date" id="" />
+                          </div>
+                        </div>
+                      </fieldset>
+              
+                      <button type="submit" class="booknow">Register Now</button>
+                    </form>
+                  </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <script src="..\static\js\dashboard.js"></script>
+</body>
+</html>
