@@ -4,14 +4,26 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random 
+import database
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this virtual env
 
-#------------------------Database setup-----------------------------
 
+
+#------------------------Database setup-----------------------------
+@app.before_request
+def before_request():
+    # Open database connection before each request
+    database.connect_to_database()
+
+@app.after_request
+def after_request(response):
+    # Close database connection after each request
+    database.close_connection()
+    return response
 
 
 
@@ -23,21 +35,29 @@ app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this vir
 
 @app.route('/')
 def homepage():
-    projects = [
-        {
-            'name': 'Envisage',
-            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-            'image_url': '/src/jpg/Event posters (1).png',
-            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-        },
-        {
-            'name': 'Geekonix',
-            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-            'image_url': '/src/jpg/Event posters (1).png',
-            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-        }]
-    return render_template('home.html',projects = projects)
-    #for the dynamic events part
+    tag = False
+    try:
+        if tag is True:
+            projects = [
+                {
+                    'name': 'Envisage',
+                    'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+                    'image_url': '/src/jpg/Event posters (1).png',
+                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+                },
+                {
+                    'name': 'Geekonix',
+                    'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+                    'image_url': '/src/jpg/Event posters (1).png',
+                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+                }]
+            return render_template('home.html',projects = projects)
+        else:
+            return render_template('index.html')
+    
+
+    except KeyError as e:
+        flash(e,"Something went wrong!")
 
 @app.route('/aboutus')
 def aboutusPage():

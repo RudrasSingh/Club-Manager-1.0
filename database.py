@@ -1,66 +1,67 @@
 import sqlite3
-
-conn = None  # Database connection variable
+from flask import g
 
 def connect_to_database():
-    global conn
-    conn = sqlite3.connect('dbClubsync.db')
+    # Get the database connection from the context-local proxy g
+    if 'db' not in g:
+        g.db = sqlite3.connect('dbClubsync.db')
+
+def get_database():
+    # Get the database connection from the context-local proxy g
+    if 'db' not in g:
+        connect_to_database()
+    return g.db
 
 def close_connection():
-    if conn:
-        conn.close()
+    # Close the database connection if it exists in the context-local proxy g
+    db = g.pop('db', None)
+    if db is not None:
+        db.close()
 
 def create_table():
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS clubs (
                     id INTEGER PRIMARY KEY,
                     name TEXT NOT NULL,
                     college TEXT,
                     venue TEXT)''')
-    conn.commit()
-    close_connection()
+    db.commit()
 
 def insert_data(name, college, venue):
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''INSERT INTO clubs (name, college, venue) VALUES (?, ?, ?)''', (name, college, venue))
-    conn.commit()
-    close_connection()
+    db.commit()
 
 def fetch_clubs():
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''SELECT * FROM clubs''')
     rows = cursor.fetchall()
-    close_connection()
     return rows
 
 def update_data(id, name, college, venue):
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''UPDATE clubs SET name=?, college=?, venue=? WHERE id=?''', (name, college, venue, id))
-    conn.commit()
-    close_connection()
+    db.commit()
 
 def delete_data(id):
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''DELETE FROM clubs WHERE id=?''', (id,))
-    conn.commit()
-    close_connection()
+    db.commit()
 
 def delete_table():
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute('''DROP TABLE IF EXISTS clubs''')
-    conn.commit()
-    close_connection()
+    db.commit()
 
 def fetch_table_names():
-    connect_to_database()
-    cursor = conn.cursor()
+    db = get_database()
+    cursor = db.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = cursor.fetchall()
-    close_connection()
     return tables
