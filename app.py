@@ -193,13 +193,13 @@ def homepage():
                 {
                     'name': 'Envisage',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-                    'image_url': '/src/jpg/Event posters (1).png',
-                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+                    'image_url': '/static/img/Event posters.png',
+                    'link': '/static/logo.png'  # Assuming this link is dynamic
                 },
                 {
                     'name': 'Geekonix',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-                    'image_url': '/src/jpg/Event posters (1).png',
+                    'image_url': '/static/img/Event posters.png',
                     'link': '/static/envi_logo.png'  # Assuming this link is dynamic
                 }]
             return render_template('home.html',projects = projects)
@@ -299,4 +299,3 @@ def verify_otp():
 if __name__ == "__main__":
     app.run(debug=True)
     
-
