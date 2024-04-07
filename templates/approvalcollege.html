@@ -7,44 +7,8 @@
     <link rel="stylesheet" href="/static/css/aprrovalcollege.css" />
   </head>
   <body>
-    <section class="Confirm">
-      <div class="Confirm-Header">
-        <a
-          class="Confirm-Header-Button Confirm-Header-Button_Close"
-          href="javascript: void(0)"
-        ></a>
-        <a
-          class="Confirm-Header-Button Confirm-Header-Button_Minimize"
-          href="javascript: void(0)"
-        ></a>
-        <a
-          class="Confirm-Header-Button Confirm-Header-Button_Maximize"
-          href="javascript: void(0)"
-        ></a>
-        <h1 class="Confirm-Header-Title">Approve Request</h1>
-      </div>
-      <div class="Confirm-Body">
-        <h2 class="Confirm-Body-Title">Request Message</h2>
-        <figure class="Boi">
-          <div class="Boi-Blush Boi-Blush_L"></div>
-          <div class="Boi-Blush Boi-Blush_R"></div>
-          <div class="Boi-Eye Boi-Eye_L"></div>
-          <div class="Boi-Eye Boi-Eye_R"></div>
-          <div class="Boi-Mouth"></div>
-        </figure>
-        <a
-          class="Confirm-Body-Button Confirm-Body-Button_Cancel"
-          href="javascript: void(0)"
-          >Approve</a
-        >
-        <a
-          class="Confirm-Body-Button Confirm-Body-Button_Delete"
-          href="javascript: void(0)"
-          >Reject</a
-        >
-      </div>
-    </section>
-    <!-- <div class="box">
+   
+    <div class="box">
         <h1>Approve Request?</h1>
         <p>
           Fetch from database and check if the venue is available or not
@@ -53,10 +17,10 @@
           Accordinly print an appropriate message.
         </p>
         <div class="buttons">
-          <a class="confirm" href="#">Approve</a>
-          <a class="confirm" href='#'>Reject</a>
+          <a class="confirm" href="{{ url_for('static', filename = '') }}">Approve</a>
+          <a class="confirm" href="{{ url_for('static', filename = '') }}">Reject</a>
         </div>
-      </div> -->
+      </div>
 
     <script src="/static/js/approveclg.js"></script>
   </body>
