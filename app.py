@@ -7,6 +7,7 @@ import random
 import database
 from dotenv import load_dotenv
 import os
+from datetime import timedelta
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
@@ -28,17 +29,32 @@ def after_request(response):
     database.close_connection()
     return response
 
+#--------------session Handling---------------
+
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+app.permanent_session_lifetime = timedelta(days=31)
+
 
 
 #------------------------firebase setting---------------------------
-firebase_config = {'apiKey': os.getenv('apikey'),
-  'authDomain': os.getenv('authDomain'),
-  'projectId': os.getenv('projectId'),
-  'storageBucket': os.getenv('storageBucket'),
-  'messagingSenderId': os.getenv('messagingSenderId'),
-  'appId': os.getenv('appId'),
-  'measurementId': os.getenv('measurementId'),
-  'databaseURL': ""}
+# firebase_config = {'apiKey': os.getenv('apikey'),
+#   'authDomain': os.getenv('authDomain'),
+#   'projectId': os.getenv('projectId'),
+#   'storageBucket': os.getenv('storageBucket'),
+#   'messagingSenderId': os.getenv('messagingSenderId'),
+#   'appId': os.getenv('appId'),
+#   'measurementId': os.getenv('measurementId'),
+#   'databaseURL': ""}
+firebase_config = {
+  'apiKey': "AIzaSyAJA-UV_R0OHj06NK9LZa90pqTrNelopPc",
+  'authDomain': "gyaan-connect-b7b08.firebaseapp.com",
+  'projectId': "gyaan-connect-b7b08",
+  'storageBucket': "gyaan-connect-b7b08.appspot.com",
+  'messagingSenderId': "800780596390",
+  'appId': "1:800780596390:web:4c4029a1f7d91eb3333067",
+  'measurementId': "G-19P192XXE0",
+  'databaseURL': ""
+}
 
 firebase = initialize_app(firebase_config)
 
@@ -48,75 +64,131 @@ auth = firebase.auth() #auth for the user_token
 #------------------- Routing ------------------------
 
 
-def google_signin():
-    id_token = request.json.get('idToken')
+# def google_signin():
+
+#     id_token = request.get('idToken')
     
-    #TODO: check whether the user is already in the database or not, if yes! take the user info and redirect using that to the homepage else create a new user in the database
+#     #TODO: check whether the user is already in the database or not, if yes! take the user info and redirect using that to the homepage else create a new user in the database
     
-    try:
-        # Authenticate user with Google credential
-        user = auth.sign_in_with_google(id_token)
+#     try:
+#         # Authenticate user with Google credential
+#         user = auth.sign_in_with_google(id_token)
         
-        # Extract user information
-        uid = user['localId']
-        name = user['displayName']
-        email = user['email']
-        profile_image = user['photoURL']
-        print(list(email,name,profile_image))
+#         # Extract user information
+#         uid = user['localId']
+#         name = user['displayName']
+#         email = user['email']
+#         profile_image = user['photoURL']
+#         print(list(email,name,profile_image))
 
-        # Store user data in database-----
+#         # Store user data in database-----
 
-        #---------------------------------
+#         #---------------------------------
 
-        return jsonify({'message': 'Google sign-in successful', 'uid': uid})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 401
+#         return jsonify({'message': 'Google sign-in successful', 'uid': uid})
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 401
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET','POST'])
 def signup():
-    email = request.json.get('email')
-    password = request.json.get('password')
-    name = request.json.get('name')
-    profile_image = ""
-    print(list(email,password,name,profile_image))
+    
+    if request.method == 'POST':
 
-    try:
-        # Create a new user with email and password
-        user = auth.create_user_with_email_and_password(email, password)
+        email = request.get('newemail')
 
-        # Extract user information
-        uid = user['localId']
+        password = request.get('newpassword')
 
-        # Store user data in your database (e.g., SQLite3)
-        # Implement your database logic here
+        name = request.get('name')
 
-        return jsonify({'message': 'User signup successful', 'uid': uid})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        user_type = request.get('radio')
+        profile_image = ""
 
-@app.route('/login', methods=['POST'])
+        try:
+            
+            user = auth.create_user_with_email_and_password(email, password)
+
+            auth.update_profile(user["idToken"], display_name =  name)
+
+            return(render_template('signup.html'))
+
+            print(email,password,name,user_type)
+           
+            
+        except Exception as e:
+            
+            message = json.loads(e.args[1])['error']['message']
+            
+            if message == "EMAIL_EXISTS":
+
+                
+                return render_template('login.html', signup_error = "Email already exists. Login with you registered email or register with a new one.", signup_display_error = True)
+            
+            
+            else:
+
+                return render_template('login.html', signup_error = "Something is not right. Please try again later or contact the administrator", signup_display_error = True)
+
+            
+
+    
+    else:
+
+
+        signup_error_message = "Something is not right. Please try again later or contact the administrator"
+        return render_template('login.html', signup_error = signup_error_message, signup_display_error = True)
+
+@app.route('/login', methods=['GET','POST'])
 def login():
-    email = request.json.get('email')
-    password = request.json.get('password')
+    login_display_error = False
+    print("login execution")
 
-    try:
-        # Sign in the user with email and password
-        user = auth.sign_in_with_email_and_password(email, password)
+    if request.method == 'POST':
+        try:
+            print("entered try block")
+            email = request.form.get('email')
+            print(email)
+            password = request.form.get('password')
+            print(password)
 
-        # Extract user information
-        uid = user['localId']
+            user = auth.sign_in_with_email_and_password(email, password)
+            session['user'] = user
+            flash("login success")
+            return redirect('/')
+        
+        except Exception as e:
+                    print("Error during login:", e)  # Print error for debugging
+                    login_error = "Invalid email or password. Please try again."
+                    flash(login_error)
+                    return render_template('signup.html', login_error=login_error, login_display_error=True)
+        
+    else:
+        return render_template('signup.html')
 
-        # You can perform additional actions here if needed, such as retrieving user data from your database
 
-        return jsonify({'message': 'Login successful', 'uid': uid})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 401
+
+
+@app.route('/logout')
+def logout():
+
+    session.pop('user', None)
+    session.clear() 
+
+    return redirect('/')
 
 @app.route('/')
 def homepage():
     tag = False #Make this tag True if you want to interact with the after login page for Development purpose
-    try:
-        if tag is True:
+    
+    if 'user' in session:
+
+        #signed user
+        
+        user_id_token = session['user']["idToken"]
+        try:
+            auth.refresh(session['user']['refreshToken'])
+            user = auth.get_account_info(user_id_token)['users'][0]
+            email = user.get('email', '').split()[0]
+            print(email)
             projects = [
                 {
                     'name': 'Envisage',
@@ -131,12 +203,12 @@ def homepage():
                     'link': '/static/envi_logo.png'  # Assuming this link is dynamic
                 }]
             return render_template('home.html',projects = projects)
-        else:
-            return render_template('index.html')
-    
+        
 
-    except KeyError as e:
-        flash(e,"Something went wrong!")
+        except KeyError as e:
+            flash(e,"Something went wrong!")
+    else:
+        return render_template('index.html')
 
 @app.route('/aboutus')
 def aboutusPage():
@@ -202,7 +274,7 @@ def send_email(receiver,otp):
 
 @app.route('/request_otp', methods=['POST'])
 def request_otp():
-    email_address = request.json.get('email_address')
+    email_address = request.get('email_address')
 
     otp = generate_otp()
     otp_store[email_address] = otp  # Store OTP in memory
@@ -214,8 +286,8 @@ def request_otp():
 
 @app.route('/verify_otp', methods=['POST'])
 def verify_otp():
-    email_address = request.json.get('email_address')
-    user_otp = request.json.get('otp')
+    email_address = request.get('email_address')
+    user_otp = request.get('otp')
 
     if email_address in otp_store and otp_store[email_address] == user_otp:
         del otp_store[email_address]  # Remove OTP from memory after successful verification
