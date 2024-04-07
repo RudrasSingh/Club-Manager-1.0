@@ -1,10 +1,18 @@
 .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222; /* Change this to the background color of your preloader */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
   }
-  
+  body .loading{
+    overflow: hidden;
+  }
   .svgbox {
     --blue: rgb(148, 66, 63);
     stroke: var(--blue);
