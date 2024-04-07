@@ -10,7 +10,7 @@
 <body>
     <main class="main-box">
         <aside class="sidebar">
-          <a href="..\templates\dashboard.html"><div class="logo-type">CLUBSYNC</div></a>
+          <a href="{{url_for('homepage')}}"><div class="logo-type">CLUBSYNC</div></a>
           <nav class="menu-box">
             <a href="{{url_for('eventDashboard')}}"
               ><li class="item-menu">
@@ -19,7 +19,7 @@
                 />Event
               </li></a
             >
-            <a href="{{url_for('eventTicket')}}"
+            <a href="{{url_for('eventticket')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/ticket.svg"
@@ -40,7 +40,7 @@
                 />Favorite
               </li></a
             >
-            <a href="{{url_for('settingsDashboard')}}"
+            <a href="{{url_for('eventsettings')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/setting.svg"
