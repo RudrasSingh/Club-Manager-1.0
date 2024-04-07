@@ -114,7 +114,7 @@ def login():
 
 @app.route('/')
 def homepage():
-    tag = False #Make this tag True if you want to interact with the after login page for Development purpose
+    tag = True #Make this tag True if you want to interact with the after login page for Development purpose
     try:
         if tag is True:
             projects = [
@@ -227,4 +227,3 @@ def verify_otp():
 if __name__ == "__main__":
     app.run(debug=True)
     
-
