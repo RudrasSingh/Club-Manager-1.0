@@ -12,14 +12,14 @@
         <aside class="sidebar">
           <a href="..\templates\dashboard.html"><div class="logo-type">CLUBSYNC</div></a>
           <nav class="menu-box">
-            <a href="dashevent.html"
+            <a href="{{url_for('eventDashboard')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/star.svg"
                 />Event
               </li></a
             >
-            <a href="#"
+            <a href="{{url_for('eventTicket')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/ticket.svg"
@@ -40,11 +40,11 @@
                 />Favorite
               </li></a
             >
-            <a href="#"
+            <a href="{{url_for('settingsDashboard')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/setting.svg"
-                />Setting
+                />Settings
               </li></a
             >
           </nav>

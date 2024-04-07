@@ -74,6 +74,20 @@ def signupPage():
 def otp_verification():
     return render_template('otp.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/events')
+def eventDashboard():
+    return render_template('dashevent.html')
+@app.route('/ticketVerification')
+def eventticket():
+    return render_template('ticketScanner.html')
+@app.route('/settings')
+def eventDashboard():
+    return render_template('dashevent.html')
+
 @app.route('/venueBooking')
 def venueBook():
     # Pass the list of clubs to the template
