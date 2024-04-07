@@ -26,7 +26,7 @@
           <input type="password" placeholder="Password" required />
           <div class="radio-inputs">
             <label class="radio">
-              <input type="radio" name="radio" checked="" />
+              <input type="radio" name="radio" checked=""/>
               <span class="name">Club</span>
             </label>
             <label class="radio">
@@ -39,14 +39,14 @@
               <span class="name">Student</span>
             </label>
           </div>
-          <button formaction="{{ url_for('otp_verification')}}">Sign Up</button>
+          <button formaction="{{ url_for('otp_verification' )}}">Sign Up</button>
         </form>
       </div>
       <div class="form-container sign-in">
         <form>
           <h1>Log In</h1>
           <div class="social-icons">
-            <a href="{{url_for('static', filename='')}}" class="icon"
+            <a href="{{url_for('google_signin')}}" class="icon"
               ><i class="fa-brands fa-google-plus-g"></i
             ></a>
           </div>
@@ -54,7 +54,7 @@
           <input type="text" placeholder="Username" required />
           <input type="password" placeholder="Password" required />
           <a href="#">→ Forget Your Password? ←</a>
-          <button formaction="{{ url_for('static', filename = '')}}">
+          <button formaction="{{ url_for('sign')}}">
             Log In
           </button>
         </form>
