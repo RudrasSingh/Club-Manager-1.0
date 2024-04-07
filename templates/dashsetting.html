@@ -10,16 +10,16 @@
 <body>
     <main class="main-box">
         <aside class="sidebar">
-            <a href="..\templates\dashboard.html"><div class="logo-type">CLUBSYNC</div></a>
+            <a href="{{url_for('homepage')}}"><div class="logo-type">CLUBSYNC</div></a>
           <nav class="menu-box">
-            <a href="..\templates\dashevent.html"
+            <a href="{{url_for('eventDashboard')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/star.svg"
                 />Event
               </li></a
             >
-            <a href="..\templates\dashticket.html"
+            <a href="{{url_for('eventticket')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/ticket.svg"
@@ -40,11 +40,11 @@
                 />Favorite
               </li></a
             >
-            <a href="..\templates\dashsetting.html"
+            <a href="{{url_for('eventsettings')}}"
               ><li class="item-menu">
                 <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/setting.svg"
-                />Setting
+                />Settings
               </li></a
             >
           </nav>
@@ -61,7 +61,7 @@
           <div class="head-title">
             <header class="header-main">
               <div class="menu">
-                <a href="..\templates\dashboard.html">
+                <a href="#">
                     <img
                   src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/menu.svg"
                   id="menu"
