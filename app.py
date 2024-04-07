@@ -5,13 +5,16 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random 
 import database
+from dotenv import load_dotenv
+import os
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this virtual env
-
-
+app.config['EMAIL_USERNAME'] = os.getenv('EMAIL_USERNAME')
+app.config['EMAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD')
+load_dotenv()
 
 #------------------------Database setup-----------------------------
 @app.before_request
@@ -35,7 +38,7 @@ def after_request(response):
 
 @app.route('/')
 def homepage():
-    tag = False #Make this tag True if you want to interact with the after login page for Development purpose
+    tag = True #Make this tag True if you want to interact with the after login page for Development purpose
     try:
         if tag is True:
             projects = [
@@ -91,25 +94,19 @@ otp_store = {}
 def generate_otp():
     return random.randint(1000, 9999)  
 
-def send_otp_email(receiver_email, otp):
-    sender_email = "your_email@gmail.com"  #Clubsync email address to be added 
-    password = "your_password"              #password of the email to be added 
+def send_email(receiver,otp):
+    try:
+        msg = MIMEText(body)
+        msg['Subject'] = "Email verification for Your ClubSync Account"
+        msg['From'] = os.getenv("EMAIL_USERNAME")
+        msg['To'] = receiver
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+            smtp_server.login(os.getenv("EMAIL_USERNAME"), os.getenv("EMAIL_PASSWORD"))
+            smtp_server.sendmail(os.getenv("EMAIL_USERNAME"),receiver, msg.as_string())
+            print("Message sent!")
+    except KeyError as e:
+        print(e)
 
-    message = MIMEMultipart()
-    message['From'] = sender_email
-    message['To'] = receiver_email
-    message['Subject'] = "Your OTP"
-
-    body = f"Your OTP is: {otp}"
-    message.attach(MIMEText(body, 'plain'))
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(sender_email, password)
-
-    text = message.as_string()
-    server.sendmail(sender_email, receiver_email, text)
-    server.quit()
 
 @app.route('/request_otp', methods=['POST'])
 def request_otp():
@@ -118,7 +115,7 @@ def request_otp():
     otp = generate_otp()
     otp_store[email_address] = otp  # Store OTP in memory
 
-    send_otp_email(email_address, otp)
+    send_email(email_address, otp)
 
     return jsonify({'message': 'OTP has been sent to {}'.format(email_address)})
 
