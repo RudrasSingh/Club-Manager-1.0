@@ -1,110 +1,147 @@
 @import 'https://fonts.googleapis.com/css?family=Lato:400,600,700&subset=latin-ext';
 
 body {
-	 background: #ececec;
-	 font-family: 'Lato';
-	 padding: 10px 0;
-	 margin: 0;
-	 font-size: 14px;
-	 overflow-x: hidden;
-	 min-width: 345px;
-}
- * {
-	 box-sizing: border-box;
-}
-#venue{
-    margin-top: 100px;
-}
-a{
-	text-decoration: none;
-}
- h1 {
-	 text-align: center;
-	 font-size: 2.5rem;
-}
- form {
-	 max-width: 768px;
-	 display: block;
-	 background: #162e3f;
-	 padding: 25px;
-	 margin: 40px auto;
-	 box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-	 color: #fff;
-}
- fieldset {
-	 border: none;
-	 margin: 10px auto;
-}
- fieldset legend {
-	 margin: 30px 0 0;
-	 font-size: 24px;
-	 font-weight: 700;
+	background: radial-gradient(farthest-corner at 40px 40px, rgb(0, 0, 62) 0%, rgb(0, 0, 0) 100%);
+	font-family: 'Lato';
+	padding: 10px 0;
+	margin: 0;
+	font-size: 14px;
+	overflow-x: hidden;
+	min-width: 345px;
 }
 
- .double-input {
-	 margin: 20px auto;
+* {
+	box-sizing: border-box;
 }
- .double-input > div {
-	 float: left;
-	 width: 48%;
-	 margin-bottom: 10px;
-	 margin: 0 1% 10px;
+
+#venue {
+	margin-top: 100px;
 }
- .double-input:after {
-	 content: "";
-	 display: table;
-	 clear: both;
+
+a {
+	text-decoration: none;
 }
- .form-input-container label {
-	 display: block;
-	 margin-bottom: 10px;
+
+h1 {
+	color: #fff;
+	text-align: center;
+	font-size: 2.5rem;
 }
- .form-input-container.date-select select {
-	 width: 47%;
+
+form {
+	max-width: 768px;
+	display: block;
+	background: #162e3f;
+	padding: 25px;
+	margin: 40px auto;
+	box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+	color: #fff;
 }
- .form-input-container.date-select select:first-of-type {
-	 margin-right: 3%;
+
+fieldset {
+	border: none;
+	margin: 10px auto;
 }
- .form-input-container select {
-	 width: 100%;
-	 color: white;
-	 background: transparent;
-	 border: 1px solid #a9a9a9;
-	 padding: 8px;
-	 height: 35px;
+
+fieldset legend {
+	margin: 30px 0 0;
+	font-size: 24px;
+	font-weight: 700;
 }
-.venueContainer select{
-    width: 28%;
+
+.double-input {
+	color: #fff;
+	margin: 20px auto;
 }
- .form-input-container select:focus {
-	 border: 1px solid #2db92d;
+
+.double-input>div {
+	color: #fff;
+	float: left;
+	width: 48%;
+	margin-bottom: 10px;
+	margin: 0 1% 10px;
 }
- .form-input-container select option {
-	 color: black;
+
+.double-input:after {
+	content: "";
+	color: #fff;
+	display: table;
+	clear: both;
 }
- .form-input-container input {
-	 width: 100%;
-	 color: white;
-	 padding: 8px;
-	 height: 35px;
-	 background: transparent;
-	 border: 1px solid #a9a9a9;
+
+.form-input-container label {
+	display: block;
+	margin-bottom: 10px;
 }
- .form-input-container input:focus {
-	 border: 1px solid #2db92d;
+
+.form-input-container.date-select select {
+	color: #fff;
+	width: 47%;
 }
- button[type="submit"] {
-	 height: 50px;
-	 width: 300px;
-	 background: #2db92d;
-	 border: none;
-	 cursor: pointer;
-	 font-size: 20px;
-	 line-height: 50px;
-	 font-family: 'Lato';
-	 box-shadow: 0px 0px 10px #131313;
-	 display: block;
-	 margin: 0 auto;
-     margin-top: 30px;
+
+.form-input-container.date-select select:first-of-type {
+	color: #fff;
+	margin-right: 3%;
 }
- 
+
+.form-input-container select {
+	width: 100%;
+	color: white;
+	background: transparent;
+	border: 1px solid #a9a9a9;
+	padding: 8px;
+	height: 35px;
+}
+
+.venueContainer select {
+	width: 28%;
+}
+
+.form-input-container select:focus {
+	border: 1px solid #2db92d;
+}
+
+.form-input-container select option {
+	color: black;
+}
+
+.form-input-container input {
+	width: 100%;
+	color: white;
+	padding: 8px;
+	height: 35px;
+	background: transparent;
+	border: 1px solid #a9a9a9;
+}
+
+.form-input-container input:focus {
+	border: 1px solid #2db92d;
+}
+
+button[type="submit"] {
+	color: #fff;
+	height: 50px;
+	width: 300px;
+	background: linear-gradient(to left, #0073c6, #2d5cb9);
+	border: none;
+	cursor: pointer;
+	font-size: 20px;
+	line-height: 50px;
+	font-family: 'Lato';
+	box-shadow: 0px 0px 10px #131313;
+	display: block;
+	margin: 0 auto;
+	margin-top: 30px;
+	transition: transform 0.3s ease;
+	/* Adding transition for smooth effect */
+}
+
+button[type="submit"]:hover {
+	transform: scale(1.05);
+	/* Zoom in by 5% on hover */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+	/* Invert the color to make it white */
+}

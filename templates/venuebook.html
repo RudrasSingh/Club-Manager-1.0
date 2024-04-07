@@ -17,14 +17,18 @@
               <label for="College">College</label>
               <select name="College" id="Collegename">
                 <option value="">Select Your College</option>
-                <option value="">Techno Main Salt Lake</option>
+                {% for college in colleges %}
+                <option value="{{ college }}">{{ college }}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="form-input-container">
               <label for="Collegety">Club</label>
               <select name="Collegety" id="hotelcity">
-                <option value="">Select Your Club</option>
-                <option value="">IIC</option>
+                <option value="">Select your Club</option>
+                {% for club in clubs %}
+                <option value="{{ club }}">{{ club }}</option>
+                {% endfor %}
               </select>
             </div>
           </div>
@@ -55,15 +59,17 @@
                 style="text-align: center"
               >
                 <option value="">Select Venue</option>
-                <option value="">Main Ground</option>
-                <option value="">University Ground</option>
-                <option value="">G-series</option>
+                {% for venue in venues %}
+                <option value="{{ venue }}">{{ venue }}</option>
+                {% endfor %}
               </select>
             </div>
           </div>
         </fieldset>
-
-        <button type="submit" class="booknow">Book Now</button>
+        <a href="#">
+          <button type="submit" class="booknow">Send Book Request</button>
+        </a>
+        
       </form>
     </section>
   </body>
