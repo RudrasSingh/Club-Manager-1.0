@@ -20,9 +20,24 @@ app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this vir
 
 
 #------------------- Routing ------------------------
-# @app.route('/abhi nahi')
-# def landingPage():
-#     return render_template('index.html')
+
+@app.route('/')
+def homepage():
+    projects = [
+        {
+            'name': 'Envisage',
+            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+            'image_url': '/src/jpg/Event posters (1).png',
+            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+        },
+        {
+            'name': 'Geekonix',
+            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+            'image_url': '/src/jpg/Event posters (1).png',
+            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+        }]
+    return render_template('home.html',projects = projects)
+    #for the dynamic events part
 
 @app.route('/aboutus')
 def aboutusPage():
@@ -45,23 +60,7 @@ def venueBook():
 
     return render_template('venuebook.html', clubs = clubs,colleges = colleges,venues = venues)
 
-@app.route('/')
-def homepage():
-    projects = [
-        {
-            'name': 'Envisage',
-            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-            'image_url': '/src/jpg/Event posters (1).png',
-            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-        },
-        {
-            'name': 'Geekonix',
-            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-            'image_url': '/src/jpg/Event posters (1).png',
-            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-        }]
-    return render_template('home.html',projects = projects)
-    #for the dynamic events part
+
 
 
 
