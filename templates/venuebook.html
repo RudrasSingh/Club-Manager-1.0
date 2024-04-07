@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue Booking</title>
+    <link rel="stylesheet" href="/static/css/venue.css" />
+  </head>
+  <body>
+    <section id="venue">
+      <h1>BOOK VENUE</h1>
+      <form>
+        <fieldset>
+          <legend class="details">Details</legend>
+          <div class="double-input">
+            <div class="form-input-container">
+              <label for="College">College</label>
+              <select name="College" id="Collegename">
+                <option value="">Select Your College</option>
+                <option value="">Techno Main Salt Lake</option>
+              </select>
+            </div>
+            <div class="form-input-container">
+              <label for="Collegety">Club</label>
+              <select name="Collegety" id="hotelcity">
+                <option value="">Select Your Club</option>
+                <option value="">IIC</option>
+              </select>
+            </div>
+          </div>
+          <div class="double-input">
+            <div class="form-input-container date-select">
+              <label for="Date">Start Date</label>
+              <input type="date" name="Date" id="" />
+            </div>
+            <div class="form-input-container date-select">
+              <label for="Date">End Date</label>
+              <input type="date" name="Date" id="" />
+            </div>
+          </div>
+          <div class="">
+            <div
+              class="form-input-container venueContainer"
+              style="position: relative; left: 250px"
+            >
+              <label
+                for="Collegety "
+                class="venuetext"
+                style="position: relative; left: 70px"
+                >Venue</label
+              >
+              <select
+                name="Collegety"
+                id="Collegety"
+                style="text-align: center"
+              >
+                <option value="">Select Venue</option>
+                <option value="">Main Ground</option>
+                <option value="">University Ground</option>
+                <option value="">G-series</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="booknow">Book Now</button>
+      </form>
+    </section>
+  </body>
+  <script src="/static/js/venue.js"></script>
+</html>
