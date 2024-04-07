@@ -20,9 +20,9 @@ app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this vir
 
 
 #------------------- Routing ------------------------
-@app.route('/abhi nahi')
-def landingPage():
-    return render_template('index.html')
+# @app.route('/abhi nahi')
+# def landingPage():
+#     return render_template('index.html')
 
 @app.route('/aboutus')
 def aboutusPage():
@@ -36,30 +36,37 @@ def signupPage():
 def otp_verification():
     return render_template('otp.html')
 
+@app.route('/venueBooking')
+def venueBook():
+    # Pass the list of clubs to the template
+    clubs = ["Club A", "Club B", "Club C"]
+    colleges = ["Club A", "Club B", "Club C"]
+    venues = ["Club A", "Club B", "Club C"]
+
+    return render_template('venuebook.html', clubs = clubs,colleges = colleges,venues = venues)
 
 @app.route('/')
 def homepage():
-    return redirect('home.html') #changed the index.html to home.html
-
-#for the dynamic events part
-
-@app.route('/')
-def index():
-    # Data that you want to pass to the template
     projects = [
         {
-            'name': 'ENVISAGE',
+            'name': 'Envisage',
             'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
             'image_url': '/src/jpg/Event posters (1).png',
             'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-        }
-        # Add more projects as needed
-    ]
-    return render_template('home.html', projects=projects)
+        },
+        {
+            'name': 'Geekonix',
+            'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+            'image_url': '/src/jpg/Event posters (1).png',
+            'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+        }]
+    return render_template('home.html',projects = projects)
+    #for the dynamic events part
 
 
 
-#------------------------otp---------------------------
+
+#------------------------otp verification---------------------------
 otp_store = {}  
 
 def generate_otp():
