@@ -196,17 +196,24 @@ def homepage():
             print(email)
             projects = [
                 {
-                    'name': 'Envisage',
+                    'name': 'Geekonix',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-                    'image_url': '/static/img/Event posters.png',
-                    'link': '/static/logo.png'  # Assuming this link is dynamic
+                    'image_url': '/static/img/geek.png',
+                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
                 },
                 {
                     'name': 'Geekonix',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
+                    'image_url': '/static/img/geek.png',
+                    'link': ''  # Assuming this link is dynamic
+                }
+                ,{
+                    'name': 'Envisage',
+                    'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
                     'image_url': '/static/img/Event posters.png',
-                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
-                }]
+                    'link': '/static/logo.png'  # Assuming this link is dynamic
+                }
+                ]
             return render_template('home.html',projects = projects)
         
 
@@ -302,5 +309,5 @@ def verify_otp():
     
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
     
