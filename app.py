@@ -196,22 +196,22 @@ def homepage():
             print(email)
             projects = [
                 {
-                    'name': 'Geekonix',
+                    'name': 'Edge 24',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-                    'image_url': '/static/img/geek.png',
-                    'link': '/static/envi_logo.png'  # Assuming this link is dynamic
+                    'image_url': '/static/img/geek.jpg',
+                    'link': '/static/img/1.png'  # Assuming this link is dynamic
                 },
                 {
-                    'name': 'Geekonix',
+                    'name': 'inspriIT',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
-                    'image_url': '/static/img/geek.png',
-                    'link': ''  # Assuming this link is dynamic
+                    'image_url': '/static/img/geek.jpg',
+                    'link': '/static/img/2.png'  # Assuming this link is dynamic
                 }
                 ,{
                     'name': 'Envisage',
                     'description': 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam deleniti eaque est error nam. Numquam magni voluptate laborum totam reprehenderit.',
                     'image_url': '/static/img/Event posters.png',
-                    'link': '/static/logo.png'  # Assuming this link is dynamic
+                    'link': '/static/img/Envisage 24.png'  # Assuming this link is dynamic
                 }
                 ]
             return render_template('home.html',projects = projects)
@@ -253,9 +253,9 @@ def eventsettings():
 @app.route('/venueBooking')
 def venueBook():
     # Pass the list of clubs to the template
-    clubs = ["Club A", "Club B", "Club C"]
-    colleges = ["Club A", "Club B", "Club C"]
-    venues = ["Club A", "Club B", "Club C"]
+    clubs = ["GEEKONIX", "IIC", "SAMARTH"]
+    colleges = ["TMSL"]
+    venues = ["CONFERENCE HALL", "G-SERIES", "MAIN GROUND"]
 
     return render_template('venuebook.html', clubs = clubs,colleges = colleges,venues = venues)
 
