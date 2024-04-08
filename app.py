@@ -89,44 +89,49 @@ auth = firebase.auth() #auth for the user_token
 #     except Exception as e:
 #         return jsonify({'error': str(e)}), 401
 
-@app.route('/signup', methods=['GET','POST'])
+@app.route('/sign-up', methods=['GET','POST'])
 def signup():
     
     if request.method == 'POST':
 
-        email = request.get('newemail')
+        email = request.form.get('newemail')
 
-        password = request.get('newpassword')
+        password = request.form.get('newpassword')
 
-        name = request.get('name')
+        name = request.form.get('name')
 
-        user_type = request.get('radio')
+        user_type = request.form.get('radio')
         profile_image = ""
 
         try:
+
+            print("in try block")
             
             user = auth.create_user_with_email_and_password(email, password)
 
             auth.update_profile(user["idToken"], display_name =  name)
+            
+            print("success\n",email,password,name,user_type)
+            
+            return(render_template('otp.html'))
 
-            return(render_template('signup.html'))
-
-            print(email,password,name,user_type)
+            
            
             
         except Exception as e:
             
             message = json.loads(e.args[1])['error']['message']
+            print(message)
             
             if message == "EMAIL_EXISTS":
 
                 
-                return render_template('login.html', signup_error = "Email already exists. Login with you registered email or register with a new one.", signup_display_error = True)
+                return render_template('signup.html', signup_error = "Email already exists. Login with you registered email or register with a new one.", signup_display_error = True)
             
             
             else:
 
-                return render_template('login.html', signup_error = "Something is not right. Please try again later or contact the administrator", signup_display_error = True)
+                return render_template('signup.html', signup_error = "Something is not right. Please try again later or contact the administrator", signup_display_error = True)
 
             
 
@@ -135,7 +140,7 @@ def signup():
 
 
         signup_error_message = "Something is not right. Please try again later or contact the administrator"
-        return render_template('login.html', signup_error = signup_error_message, signup_display_error = True)
+        return render_template('signup.html', signup_error = signup_error_message, signup_display_error = True)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
