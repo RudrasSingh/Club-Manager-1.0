@@ -7,4 +7,4 @@ body.classList.add('loading'); // Add the loading class to body to prevent scrol
 setTimeout(function() {
   preloader.style.display = 'none'; // Hide the preloader
   body.classList.remove('loading'); // Remove the loading class to enable scrolling
-}, 5000); //5sec preloader time
+}, 2000); //2sec preloader time
