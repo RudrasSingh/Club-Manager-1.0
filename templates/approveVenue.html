@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue Approval Page</title>
+    <link rel="stylesheet" href="/static/css/aprrovalcollege.css" />
+</head>
+
+<body>
+
+    <div class="box">
+        <h1>Approve Request?</h1>
+        <p>
+            Fetch from database and check if the venue is available or not
+            <br></br>
+            <br></br>
+            Accordinly print an appropriate message.
+        </p>
+        <div class="buttons">
+            <a class="confirm" href="{{ url_for('static', filename = '') }}">Approve</a>
+            <a class="confirm" href="{{ url_for('static', filename = '') }}">Reject</a>
+        </div>
+    </div>
+
+    <script src="/static/js/approveclg.js"></script>
+</body>
+
+</html>
