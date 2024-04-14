@@ -15,6 +15,7 @@ app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this virtual env
 app.config['EMAIL_USERNAME'] = os.getenv('EMAIL_USERNAME')
 app.config['EMAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD')
+#iguess
 load_dotenv()
 
 #------------------------Database setup-----------------------------
