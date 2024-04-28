@@ -39,13 +39,13 @@ app.permanent_session_lifetime = timedelta(days=31)
 #------------------------firebase setting---------------------------
 
 firebase_config = {
-  'apiKey': "AIzaSyCrKxi25-pDc2STgiu-KROGJwc9WBtl74Y",
-  'authDomain': "club-sync-15651.firebaseapp.com",
-  'projectId': "club-sync-15651",
-  'storageBucket': "club-sync-15651.appspot.com",
-  'messagingSenderId': "652574676943",
-  'appId': "1:652574676943:web:9af834f80ac5c0fc51a4ba",
-  'measurementId': "G-WZ600MPK5L",
+  'apiKey': os.getenv('APIKEY'),
+  'authDomain': os.getenv('AUTHDOMAIN'),
+  'projectId': os.getenv('PROJECTID'),
+  'storageBucket': os.getenv('STORAGEBUCKET'),
+  'messagingSenderId': os.getenv('MESSAGINGSENDERID'),
+  'appId': os.getenv('APPID'),
+  'measurementId': os.getenv('MEASUREMENTID'),
   'databaseURL': ""
 }
 
