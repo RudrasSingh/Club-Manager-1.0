@@ -1,3 +1,40 @@
+.site-footer {
+  width: 100%; /* Set the width to 100% */
+  text-align: center; /* Center the content inside the footer */
+  border: 0; /* Remove border */
+  margin: 0 auto; /* Center the footer horizontally */
+  padding: 0; /* Remove padding */
+  max-width: none; /* Remove any max-width constraints */
+}
+
+.row-fluid {
+  margin-left: 30px; /* Compensate for left padding */
+  margin-right: 30px; /* Compensate for right padding */
+}
+
+
+.site-footer hr {
+  width: 100%; /* Ensure the HR spans the full width */
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 1.0); /* Add the bottom border */
+  margin: 0; /* Remove any margin */
+}
+
+/* Additional CSS to make nested elements full width */
+.container-fluid,
+.row-fluid-wrapper,
+.row-fluid {
+  width: 100%;
+  max-width: none;
+}
+
+/* Ensure all spans within the footer are full width */
+.site-footer .widget-span {
+  width: 100%;
+  max-width: none;
+}
+
 a.cta_button {
     -moz-box-sizing: content-box !important;
     -webkit-box-sizing: content-box !important;
