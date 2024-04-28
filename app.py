@@ -73,6 +73,7 @@ auth = firebase.auth() #auth for the user_token
 #     try:
 #         # Authenticate user with Google credential
 #         user = auth.sign_in_with_google(id_token)
+
         
 #         # Extract user information
 #         uid = user['localId']
