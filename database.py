@@ -28,16 +28,17 @@ def create_table():
                     venue TEXT)''')
     db.commit()
 
-def insert_data(name, college, venue):
+def create_club(club_name,email):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO clubs (name, college, venue) VALUES (?, ?, ?)''', (name, college, venue))
+    cursor.execute('''INSERT INTO Clubs (email, club_name,Active) VALUES (?, ?, ?)''', (email,club_name, 1)) #active : 1  for true 0 for false
     db.commit()
 
-def fetch_clubs():
+def fetch_clubs(email): #takes email as input      
+    
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''SELECT * FROM clubs''')
+    cursor.execute('''SELECT * FROM Clubs ''')#NOTE: Comma is there to ensure the binding is a tuple
     rows = cursor.fetchall()
     return rows
 
