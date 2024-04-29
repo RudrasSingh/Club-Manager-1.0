@@ -31,8 +31,8 @@ def after_request(response):
 
 #--------------session Handling---------------
 
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
-app.permanent_session_lifetime = timedelta(days=31)
+# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+# app.permanent_session_lifetime = timedelta(days=31)
 
 
 
@@ -50,7 +50,6 @@ firebase_config = {
 }
 
 firebase = initialize_app(firebase_config)
-
 auth = firebase.auth() #auth for the user_token 
 
 #------------------- Routing ------------------------
@@ -82,6 +81,7 @@ def signup():
         signup_error_message = "Something is not right. Please try again later or contact the administrator"
         return render_template('signup.html', signup_error = signup_error_message, signup_display_error = True)
 
+
 @app.route('/login', methods=['GET','POST'])
 def login():
 
@@ -92,7 +92,6 @@ def login():
 
             user = auth.sign_in_with_email_and_password(email, password)
             session['user'] = user
-            flash("login success",'Success')
             return redirect('/')
         
         except Exception as e:
