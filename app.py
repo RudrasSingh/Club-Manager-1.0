@@ -224,7 +224,4 @@ def venueBook():
     return render_template('venuebook.html', clubs = clubs,colleges = colleges,venues = venues)
 
 
-
-if __name__ == "__main__":
-    app.run(debug=False)
     
