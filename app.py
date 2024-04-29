@@ -1,13 +1,8 @@
 from flask import *
 from pyrebase import *
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-import random 
 import database as db
 from dotenv import load_dotenv
 import os
-from datetime import timedelta
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
@@ -56,7 +51,6 @@ auth = firebase.auth() #auth for the user_token
 
 @app.route('/sign-up', methods=['GET','POST'])
 def signup():
-    
     if request.method == 'POST':
 
         email = request.form.get('newemail')
@@ -111,8 +105,32 @@ def logout():
 
     session.pop('user', None)
     session.clear() 
-
+    flash("Logged out successfully!","Success")
     return redirect('/')
+
+
+@app.route('/forgot-password', methods=['GET','POST'])
+def forgotPassword():
+    if request.method == 'POST':
+        try:
+            email = request.form.get('user_email')
+            try:
+                auth.send_password_reset_email(email)
+                flash("Password reset link sent to your email!","Success")
+                return redirect('/login')
+            except Exception as e:
+                print("Error during password reset:", e)
+                flash("Something went wrong!","Error")
+                return redirect('/login')
+            
+        except Exception as e:
+
+            print("Error during password reset:", e)
+            flash("Something went wrong!","Error")
+            return redirect('/login')
+        
+    return render_template('forgotPassword.html')
+
 
 @app.route('/')
 def homepage():
@@ -155,17 +173,16 @@ def homepage():
     else:
         return render_template('index.html')
 
+
 @app.route('/aboutus')
 def aboutusPage():
     return render_template('about.html')
 
-@app.route('/login')
-def signupPage():
-    return render_template('signup.html')
 
 @app.route('/verification')
 def otp_verification():
     return render_template('otp.html')
+
 
 @app.route('/dashboard')
 def dashboard():
@@ -183,6 +200,7 @@ def dashboard():
     
     return render_template('dashboard.html',context = context)
 
+
 @app.route('/events')
 def eventDashboard():
     return render_template('dashevent.html')
@@ -195,6 +213,7 @@ def eventticket():
 def eventsettings():
     return render_template('dashsetting.html')
 
+
 @app.route('/venueBooking')
 def venueBook():
     # Pass the list of clubs to the template
@@ -203,6 +222,7 @@ def venueBook():
     venues = ["CONFERENCE HALL", "G-SERIES", "MAIN GROUND"]
 
     return render_template('venuebook.html', clubs = clubs,colleges = colleges,venues = venues)
+
 
 
 if __name__ == "__main__":

@@ -9,6 +9,15 @@
 </head>
 <body>
     <main class="main-box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <aside class="sidebar">
           <a href="{{url_for('homepage')}}"><div class="logo-type">CLUBSYNC</div></a>
           <nav class="menu-box">
