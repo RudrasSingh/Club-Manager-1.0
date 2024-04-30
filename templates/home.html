@@ -668,7 +668,121 @@ padding-bottom: 60px !important;
 </style>
 
   
+<style>
+  /* Base styles */
 
+/* Adjust padding for module wrappers */
+.module-wrapper {
+  --padding-desktop: 0 0 20px 0;
+  --padding-mobile: 0;
+}
+
+/* Adjust h1 size for rich text */
+@media (min-width: 768px) {
+  .theme-rich-text__main {
+    --h1-size: 120px;
+  }
+}
+
+@media not screen and (min-width: 768px) {
+  .theme-rich-text__main {
+    --h1-size: 65px;
+  }
+}
+
+/* Counter styles */
+.counter {
+  --counter-radius: 10px;
+  --icon-height: 50px;
+}
+
+/* Featured events slider styles */
+.featured-events-slider__heading {
+  padding-right: 20px;
+}
+
+.featured-events-slider .splide__arrows {
+  bottom: 100%;
+  margin: 0 0 20px;
+  position: absolute;
+  right: 0;
+}
+
+/* Adjust padding and margin for featured events slider */
+.featured-events-slider__image-tag {
+  left: 20px;
+}
+
+/* Adjust padding for text in featured events slider */
+.featured-events-slider__text {
+  padding: 20px;
+}
+
+/* Adjust bullet image size and spacing */
+.featured-events-slider__details {
+  font-size: 0.9375em;
+}
+
+/* Services slider styles */
+.services-slider {
+  --active-shadow: 10px 10px 0 rgba(8, 0, 255, 0.5);
+  --slide-border-radius: 10px;
+}
+
+/* Testimonials slider styles */
+.testimonials-slider {
+  --quote-accent-size: 68px;
+  --pagination-active: #FF00D4;
+  --pagination: rgba(255, 255, 255, 0.5);
+}
+
+/* Call to action box styles */
+.module-wrapper--highlight {
+  --highlight-color: #ffffff;
+  --highlight-decoration: underline;
+}
+
+/* Adjust padding for CTA box */
+#hs_cos_wrapper_main_content-dnd_partial-9-module-1 .module-wrapper {
+  --padding-desktop: 60px 90px;
+  --padding-mobile: 60px 40px;
+}
+
+/* Footer styles */
+.footer_dnd_main-module-5 .icon-wrapper {
+  --custom-radius: 100px;
+}
+
+/* Adjust padding for footer modules */
+#hs_cos_wrapper_footer_dnd_main-module-5 .module-wrapper,
+#hs_cos_wrapper_footer_dnd_main-module-9 .module-wrapper {
+  --padding-desktop: 0;
+  --padding-mobile: 0;
+}
+
+/* HubSpot Non-stacked Media Query Styles */
+@media (min-width: 768px) {
+  /* Example: Adjust padding for larger screens */
+  .header-row-0-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  /* Add more responsive styles for larger screens */
+}
+
+/* HubSpot Styles (mobile) */
+@media (max-width: 768px) {
+  /* Example: Adjust padding for mobile */
+  .header-row-0-padding {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  /* Add more responsive styles for mobile */
+}
+
+</style>
 
   
 <!--  Added by GoogleAnalytics4 integration -->
