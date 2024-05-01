@@ -86,30 +86,35 @@
                   ><img
                     src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/notification.svg"
                 /></a>
-                <img
-                  src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/default.jpeg"
-                  alt="profile"
-                  class="profile"
-                />
               </div>
             </header>
             <h1 class="title-page">Dashboard</h1>
           </div>
           <div class="page-content">
             <div class="box-map-event">
-              <div class="map">
-                <div class="box-search">
-                  <img
-                    src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/search.svg"
-                    id="search"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Events in "
-                    id="input-search"
-                  />
+              <div class="event">
+                <img
+                <img src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/event-banner.png" style="width: 400px; height: 300px;" />
+                  alt="Concert Maneskin"
+                  class="event-banner"
+                />
+                <div class="info-event">
+                  <div class="date-event"></div>
+                  <h2 class="title-event">{{context.upper()}}</h2>
+                  <div class="location-event">
+                    <img
+                      src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/location.svg"
+                    />
+                    TMSL, Kolkata
+                  </div>
+                  <p class="discraption-event">
+                    {{context.upper()}} Club is a tech club in ABC college.
+                  </p>    
                 </div>
               </div>
+
+
+
               <div class="list-events">
                 <a href="#"
                   ><article class="event-li">
@@ -173,26 +178,7 @@
                 >
               </div>
             </div>
-            <div class="event">
-              <img
-                src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/event-banner.png"
-                alt="Concert Maneskin"
-                class="event-banner"
-              />
-              <div class="info-event">
-                <div class="date-event"></div>
-                <h2 class="title-event">{{context.upper()}}</h2>
-                <div class="location-event">
-                  <img
-                    src="https://raw.githubusercontent.com/emnatkins/cdn-codepen/main/gOQRaMY/location.svg"
-                  />
-                  TMSL, Kolkata
-                </div>
-                <p class="discraption-event">
-                  {{context.upper()}} Club is a tech club in ABC college.
-                </p>    
-              </div>
-            </div>
+            
           </div>
         </div>
       </main>
