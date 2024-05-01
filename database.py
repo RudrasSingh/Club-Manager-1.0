@@ -19,23 +19,6 @@ def close_connection():
         db.close()
 
 
-#  table 1: Users
-
-
-def create_users_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Users (
-                    email TEXT NOT NULL UNIQUE,
-                    name TEXT NOT NULL,
-                    active INTEGER NOT NULL,
-                    college TEXT NOT NULL,
-                    contact NUMERIC NOT NULL,
-                    banned TEXT,
-                    PRIMARY KEY(email)
-                    )''')
-    db.commit()
-
 def create_user(email, name, active, college, contact, banned):
     db = get_database()
     cursor = db.cursor()
@@ -63,34 +46,8 @@ def delete_user(email):
     cursor.execute('''DELETE FROM Users WHERE email=?''', (email,))
     db.commit()
 
-def delete_users_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''DROP TABLE IF EXISTS Users''')
-    db.commit()
-
 
 #  table 2: Clubs
-
-
-def create_clubs_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Clubs (
-                    email TEXT NOT NULL UNIQUE,
-                    name TEXT NOT NULL,
-                    college TEXT NOT NULL,
-                    active INTEGER NOT NULL,
-                    approval TEXT,
-                    contact NUMERIC NOT NULL,
-                    city TEXT NOT NULL,
-                    state TEXT NOT NULL,
-                    club_head TEXT NOT NULL,
-                    ch_contact NUMERIC NOT NULL,
-                    club_url TEXT,
-                    PRIMARY KEY(email)
-                    )''')
-    db.commit()
 
 def create_club(email, name, college, active, approval, contact, city, state, club_head, ch_contact, club_url):
     db = get_database()
@@ -120,36 +77,7 @@ def delete_club(email):
     cursor.execute('''DELETE FROM Clubs WHERE email=?''', (email,))
     db.commit()
 
-def delete_clubs_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''DROP TABLE IF EXISTS Clubs''')
-    db.commit()
-
-
 #  table 3: Events
-
-def create_events_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Events (
-                    club TEXT NOT NULL,
-                    fest_name TEXT,
-                    event_name TEXT NOT NULL,
-                    start_date NUMERIC NOT NULL,
-                    end_date NUMERIC,
-                    time NUMERIC,
-                    details TEXT,
-                    event_url TEXT NOT NULL,
-                    venue TEXT NOT NULL,
-                    fees INTEGER,
-                    poster_url TEXT NOT NULL,
-                    reg_count NUMERIC NOT NULL,
-                    poc TEXT NOT NULL,
-                    poc_contact NUMERIC NOT NULL
-                    )''')
-    db.commit()
-
 def create_event(club, fest_name, event_name, start_date, end_date, time, details, event_url, venue, fees, poster_url, reg_count, poc, poc_contact):
     db = get_database()
     cursor = db.cursor()
@@ -178,24 +106,7 @@ def delete_event(club, event_name):
     cursor.execute('''DELETE FROM Events WHERE club=? AND event_name=?''', (club, event_name))
     db.commit()
 
-def delete_events_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''DROP TABLE IF EXISTS Events''')
-    db.commit()
-
 #  table 4: Festival
-
-def create_festival_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Festival (
-                    clb_name TEXT NOT NULL,
-                    fest_name TEXT,
-                    clb_email TEXT NOT NULL,
-                    fest_year NUMERIC NOT NULL
-                    )''')
-    db.commit()
 
 def create_festival(clb_name, fest_name, clb_email, fest_year):
     db = get_database()
@@ -224,14 +135,6 @@ def delete_festival(clb_name):
     cursor.execute('''DELETE FROM Festival WHERE clb_name=?''', (clb_name,))
     db.commit()
 
-def delete_festival_table():
-    db = get_database()
-    cursor = db.cursor()
-    cursor.execute('''DROP TABLE IF EXISTS Festival''')
-    db.commit()
-
-
-
 # Additional functions:
 
 def fetch_table_names():
@@ -240,26 +143,3 @@ def fetch_table_names():
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = cursor.fetchall()
     return tables
-
-
-# Main function to create all tables if needed:
-
-def create_all_tables():
-    create_users_table()
-    create_clubs_table()
-    create_events_table()
-    create_festival_table()
-    
-# Main function to delete all tables  if needed:
-
-def delete_all_tables():
-    delete_users_table()
-    delete_clubs_table()
-    delete_events_table()
-    delete_festival_table()
-    
-   
-if __name__ == "__main__":
-    create_all_tables()    #for creation
-   
-    # delete_all_tables()    #for deletion
