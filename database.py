@@ -49,12 +49,12 @@ def delete_user(email):
 
 #  table 2: Clubs
 
-def create_club(email, name, college, active, approval, contact, city, state, club_head, ch_contact, club_url):
+def create_club(email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO Clubs (email, name, college, active, approval, contact, city, state, club_head, ch_contact, club_url) 
+    cursor.execute('''INSERT INTO Clubs (email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
-                   (email, name, college, active, approval, contact, city, state, club_head, ch_contact, club_url))
+                   (email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url))
     db.commit()
 
 def fetch_clubs():
@@ -64,11 +64,11 @@ def fetch_clubs():
     rows = cursor.fetchall()
     return rows
 
-def update_club(email, name, college, active, approval, contact, city, state, club_head, ch_contact, club_url):
+def update_club(email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''UPDATE Clubs SET name=?, college=?, active=?, approval=?, contact=?, city=?, state=?, club_head=?, ch_contact=?, club_url=? WHERE email=?''', 
-                   (name, college, active, approval, contact, city, state, club_head, ch_contact, club_url, email))
+    cursor.execute('''UPDATE Clubs SET name=?, college=?, active=?, approval=?, contact=?, city=?, state=?, details=?, club_head=?, ch_contact=?, club_url=? WHERE email=?''', 
+                   (name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url, email))
     db.commit()
 
 def delete_club(email):
