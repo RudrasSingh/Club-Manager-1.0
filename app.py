@@ -3,13 +3,12 @@ from pyrebase import *
 import database as db
 from dotenv import load_dotenv
 import os
+from authlib.integrations.flask_client import OAuth
 #-----------------setting up the app------------------
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this virtual env
-app.config['EMAIL_USERNAME'] = os.getenv('EMAIL_USERNAME')
-app.config['EMAIL_PASSWORD'] = os.getenv('EMAIL_PASSWORD')
 load_dotenv()
 
 #------------------------Database setup-----------------------------
@@ -24,13 +23,15 @@ def after_request(response):
     db.close_connection()
     return response
 
-#--------------session Handling---------------
-
-# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
-# app.permanent_session_lifetime = timedelta(days=31)
-
-
-
+#--------------Authlib---------------
+oauth = OAuth(app)
+oauth.register(
+    "clubsync",
+    client_id=os.getenv("OAUTH2_CLIENT_ID"),
+    client_secret=os.getenv("OAUTH2_CLIENT_SECRET"),
+    client_kwargs={"scope": "openid profile email",},
+    server_metadata_url=f'{os.getenv("OAUTH2_META_URL")}',
+)
 #------------------------firebase setting---------------------------
 
 firebase_config = {
@@ -63,18 +64,55 @@ def signup():
             
             if user_type.lower() == 'club':
                 session["user"] = user
-                print(user)
-                db.create_club(email,name)
+                
                 flash("Account Created Successfully!","Success")
             return redirect('/')
         except Exception as e:
-            print("Error During Signup:", e)  # Print error for debugging
+            print("Error During Signup:", e)
+            return redirect('/sign-up')
+              # Print error for debugging
 
 
     else:
-        signup_error_message = "Something is not right. Please try again later or contact the administrator"
-        return render_template('signup.html', signup_error = signup_error_message, signup_display_error = True)
 
+        return render_template('signup.html')
+
+
+@app.route("/signin-google")
+def googleCallback():
+    
+    try:
+        # fetch access token and id token using authorization code
+        token = oauth.clubsync.authorize_access_token()
+        # print(token,"\n\n",type(token))
+
+        token = dict(token)
+        print(json.dumps(token, indent = 4))
+        # Extract necessary user data from the ID token
+        personal = token.get('userinfo')
+        user_info = {"name" : personal.get('name'),
+                    "email" : personal.get('email'),
+                    "id_token" : token.get('id_token')}
+
+        # Set complete user information in the session
+        print(user_info)
+        session["user"] = user_info
+        return redirect('/profile')
+    except Exception as e:
+        print("Error during google callback:", e)
+        return redirect('/login')
+
+
+@app.route("/google-login")
+def googleLogin():
+    try:
+        if "user" in session:
+            abort(404)
+        return oauth.myApp.authorize_redirect(redirect_uri=url_for("googleCallback", _external=True))
+    except Exception as e:
+        flash("Error during google login:", "Failure")
+        return redirect('/login')
+    
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -96,9 +134,7 @@ def login():
         
     else:
         return render_template('signup.html')
-
-
-
+    
 
 @app.route('/logout')
 def logout():
@@ -134,8 +170,9 @@ def forgotPassword():
 
 @app.route('/')
 def homepage():
-    tag = False #Make this tag True if you want to interact with the after login page for Development purpose
+    """
     
+    """   
     if 'user' in session:
 
         #signed user
@@ -172,7 +209,7 @@ def homepage():
             flash(e,"Something went wrong!")
     else:
         return render_template('index.html')
-
+        
 
 @app.route('/aboutus')
 def aboutusPage():
@@ -186,20 +223,25 @@ def otp_verification():
 
 @app.route('/dashboard')
 def dashboard():
+    try:    
+        user = session.get('user')
+        print(user)
+        email = user.get('email', '').split()[0]
+        print(email)
+        context = db.fetch_clubs(email)
+        clubName = ""
+        for i in context:
+            if i[1] == email:
+                context = i[0]
         
-    user = session.get('user')
-    print(user)
-    email = user.get('email', '').split()[0]
-    print(email)
-    context = db.fetch_clubs(email)
-    clubName = ""
-    for i in context:
-        if i[1] == email:
-            context = i[0]
-    
-    
-    return render_template('dashboard.html',context = context)
+        return render_template('dashboard.html',context = context)
+    except Exception as e:
+        print("Error during dashboard:", e)
+        return redirect('/login')
 
+@app.route('/profile')
+def profile():
+    return render_template('404.html')
 
 @app.route('/events')
 def eventDashboard():
