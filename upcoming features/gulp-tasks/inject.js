@@ -55,10 +55,10 @@ gulp.task('replacePath', function () {
     var replacePath1 = gulp.src('./pages/**/*.html', {
             base: "./"
         })
-        .pipe(replace('src="assets/images/', 'src="../newdakh/assets/images/'))
-        .pipe(replace('href="pages/', 'href="../newdakh/pages/'))
+        .pipe(replace('src="assets/images/', 'src="../upcoming features/assets/images/'))
+        .pipe(replace('href="pages/', 'href="../upcoming features/pages/'))
         .pipe(replace('href="documentation"', 'href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html"'))
-        .pipe(replace('href="index.html"', 'href="../newdakh/index.html"'))
+        .pipe(replace('href="index.html"', 'href="../upcoming features/index.html"'))
         .pipe(gulp.dest('.'));
     var replacePath2 = gulp.src('./**/index.html', {
             base: "./"
