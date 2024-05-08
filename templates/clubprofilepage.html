@@ -41,42 +41,42 @@
                     
                       
                       <div class="form-group">
-                        <label for="exampleInputCity1">College</label>
-                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="College Name">
+                        <label for="exampleInputCity1">College<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputCity1" name = "college" placeholder="College Name" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword4">Contact No.</label>
-                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Contact No.">
+                        <label for="exampleInputPassword4">Contact No.<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputPassword4" name = "contact" placeholder="Contact No." required>
                       </div>
                       <div class="form-group">
-                        <label>File upload</label>
+                        <label>Profile Picture</label>
                         <input type="file" name="img[]" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image (.jpg/.png)">
                           <span class="input-group-append">
                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                           </span>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputCity1">City</label>
-                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                        <label for="exampleInputCity1">City<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputCity1" name = "city" placeholder="Location" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputCity1">State</label>
-                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                        <label for="exampleInputCity1">State<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="exampleInputCity1" name = "state" placeholder="Location" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword4"> Club Head Name</label>
-                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder=" club head name">
+                        <label for="exampleInputPassword4"> Club Head Name<span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="exampleInputPassword4" name = "cheadname" placeholder=" Club Head Name" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword4">Club Head Contact No.</label>
-                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder="club head contact no.">
+                        <label for="exampleInputPassword4">Club Head Contact No.<span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="exampleInputPassword4" name = "cheadcontact" placeholder="club head contact no." required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleTextarea1">Description</label>
-                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                        <label for="exampleTextarea1">Description<span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="desc" required></textarea>
                       </div>
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
                       <button class="btn btn-dark">Cancel</button>

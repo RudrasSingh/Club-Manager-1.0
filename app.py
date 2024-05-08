@@ -34,6 +34,7 @@ oauth.register(
 )
 #------------------------firebase setting---------------------------
 
+print(os.getenv("OAUTH2_META_URL"))
 firebase_config = {
   'apiKey': os.getenv('APIKEY'),
   'authDomain': os.getenv('AUTHDOMAIN'),
@@ -87,20 +88,19 @@ def googleCallback():
         # print(token,"\n\n",type(token))
 
         token = dict(token)
-        print(json.dumps(token, indent = 4))
+        # print(json.dumps(token, indent = 4))
         # Extract necessary user data from the ID token
         personal = token.get('userinfo')
         user_info = {"name" : personal.get('name'),
                     "email" : personal.get('email'),
-                    "id_token" : token.get('id_token')}
-
-        # Set complete user information in the session
-        print(user_info)
+                    "idToken" : token.get('id_token')}
         session["user"] = user_info
-        return redirect('/profile')
+        # Set complete user information in the session
+        session["user"] = user_info
+        return redirect('/')
     except Exception as e:
         print("Error during google callback:", e)
-        return redirect('/login')
+        return redirect('/sign-up')
 
 
 @app.route("/google-login")
@@ -108,10 +108,11 @@ def googleLogin():
     try:
         if "user" in session:
             abort(404)
-        return oauth.myApp.authorize_redirect(redirect_uri=url_for("googleCallback", _external=True))
+        return oauth.clubsync.authorize_redirect(redirect_uri=url_for("googleCallback", _external=True))
     except Exception as e:
         flash("Error during google login:", "Failure")
-        return redirect('/login')
+        print(e)
+        return redirect('/signup')
     
 
 @app.route('/login', methods=['GET','POST'])
@@ -177,11 +178,10 @@ def homepage():
 
         #signed user
         
-        user_id_token = session['user']["idToken"]
+        user_id_token = session['user']
         try:
-            auth.refresh(session['user']['refreshToken'])
-            user = auth.get_account_info(user_id_token)['users'][0]
-            email = user.get('email', '').split()[0]
+            
+            email = session["user"]
             projects = [
                 {
                     'name': 'Edge 24',
@@ -224,20 +224,21 @@ def otp_verification():
 @app.route('/dashboard')
 def dashboard():
     try:    
-        user = session.get('user')
-        print(user)
-        email = user.get('email', '').split()[0]
-        print(email)
-        context = db.fetch_clubs(email)
+        user = session["user"]
+        
+        # email = user.get('email', '').split()[0]
+        # context = db.fetch_clubs(email)
         clubName = ""
-        for i in context:
-            if i[1] == email:
-                context = i[0]
+        # for i in context:
+        #     if i[1] == email:
+        #         context = i[0]
+        
+        context = "iic"
         
         return render_template('dashboard.html',context = context)
     except Exception as e:
         print("Error during dashboard:", e)
-        return redirect('/login')
+        return redirect('/')
 
 @app.route('/profile')
 def profile():
