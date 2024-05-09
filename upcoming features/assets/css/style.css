@@ -21133,3 +21133,47 @@ div.tagsinput {
   flex-grow: 1; }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: #191c24;
+  box-sizing: border-box;
+  padding: 0.25rem;
+  width: 100%; /* Make it responsive */
+  max-width: 300px; /* Limit maximum width */
+  font-size: 14px;
+}
+
+@media (min-width: 600px) {
+  .radio-inputs {
+    width: 300px; /* Change width for larger screens if needed */
+  }
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: .5rem 0;
+  transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: rgba(255, 0, 0, 0.5); /* Red color with 50% opacity */
+  font-weight: 600;
+}
