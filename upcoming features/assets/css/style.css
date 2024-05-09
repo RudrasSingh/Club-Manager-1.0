@@ -21135,6 +21135,9 @@ div.tagsinput {
 /*# sourceMappingURL=maps/style.css.map */
 
 .radio-inputs {
+  left: 100px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
   position: relative;
   display: flex;
   flex-wrap: wrap;
