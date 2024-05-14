@@ -19,11 +19,11 @@ def close_connection():
         db.close()
 
 
-def create_user(email, name, active, college, contact, banned):
+def create_user(email, name, active, college, contact, profile_pic_url,banned):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO Users (email, name, active, college, contact, banned) 
-                    VALUES (?, ?, ?, ?, ?, ?)''', (email, name, active, college, contact, banned))
+    cursor.execute('''INSERT INTO Users (email, name, active, college, contact, profile_pic_url, banned) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)''', (email, name, active, college, contact, profile_pic_url, banned))
     db.commit()
 
 def fetch_users():
@@ -33,11 +33,11 @@ def fetch_users():
     rows = cursor.fetchall()
     return rows
 
-def update_user(email, name, active, college, contact, banned):
+def update_user(email, name, active, college, contact, profile_pic_url,banned):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''UPDATE Users SET name=?, active=?, college=?, contact=?, banned=? WHERE email=?''', 
-                   (name, active, college, contact, banned, email))
+    cursor.execute('''UPDATE Users SET name=?, active=?, college=?, contact=?, profile_pic_url=?, banned=? WHERE email=?''', 
+                   (name, active, college, contact, profile_pic_url, banned, email))
     db.commit()
 
 def delete_user(email):
@@ -49,12 +49,12 @@ def delete_user(email):
 
 #  table 2: Clubs
 
-def create_club(email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url):
+def create_club(email, name, college, active, approval, contact, city, state, details, logo_url, club_head, ch_contact, club_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO Clubs (email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
-                   (email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url))
+    cursor.execute('''INSERT INTO Clubs (email, name, college, active, approval, contact, city, state, details, logo_url, club_head, ch_contact, club_url) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
+                   (email, name, college, active, approval, contact, city, state, details, logo_url, club_head, ch_contact, club_url))
     db.commit()
 
 def fetch_clubs():
@@ -64,11 +64,11 @@ def fetch_clubs():
     rows = cursor.fetchall()
     return rows
 
-def update_club(email, name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url):
+def update_club(email, name, college, active, approval, contact, city, state, details, logo_url, club_head, ch_contact, club_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''UPDATE Clubs SET name=?, college=?, active=?, approval=?, contact=?, city=?, state=?, details=?, club_head=?, ch_contact=?, club_url=? WHERE email=?''', 
-                   (name, college, active, approval, contact, city, state, details, club_head, ch_contact, club_url, email))
+    cursor.execute('''UPDATE Clubs SET name=?, college=?, active=?, approval=?, contact=?, city=?, state=?, details=?, logo_url=?, club_head=?, ch_contact=?, club_url=? WHERE email=?''', 
+                   (name, college, active, approval, contact, city, state, details, logo_url, club_head, ch_contact, club_url, email))
     db.commit()
 
 def delete_club(email):
@@ -108,11 +108,11 @@ def delete_event(club, event_name):
 
 #  table 4: Festival
 
-def create_festival(clb_name, fest_name, clb_email, fest_year):
+def create_festival(clb_name, fest_name, clb_email, fest_year, fest_logo_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''INSERT INTO Festival (clb_name, fest_name, clb_email, fest_year) 
-                    VALUES (?, ?, ?, ?)''', (clb_name, fest_name, clb_email, fest_year))
+    cursor.execute('''INSERT INTO Festival (clb_name, fest_name, clb_email, fest_year, fest_logo_url) 
+                    VALUES (?, ?, ?, ?, ?)''', (clb_name, fest_name, clb_email, fest_year, fest_logo_url))
     db.commit()
 
 def fetch_festivals():
@@ -122,17 +122,46 @@ def fetch_festivals():
     rows = cursor.fetchall()
     return rows
 
-def update_festival(clb_name, fest_name, clb_email, fest_year):
+def update_festival(clb_name, fest_name, clb_email, fest_year, fest_logo_url):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''UPDATE Festival SET fest_name=?, clb_email=?, fest_year=? WHERE clb_name=?''', 
-                   (fest_name, clb_email, fest_year, clb_name))
+    cursor.execute('''UPDATE Festival SET fest_name=?, clb_email=?, fest_year=?, fest_logo_url=? WHERE clb_name=?''', 
+                   (fest_name, clb_email, fest_year, clb_name, fest_logo_url))
     db.commit()
 
 def delete_festival(clb_name):
     db = get_database()
     cursor = db.cursor()
     cursor.execute('''DELETE FROM Festival WHERE clb_name=?''', (clb_name,))
+    db.commit()
+
+#  table 5: Reg_details
+
+def create_Reg_details(reg_number, name, email, contact, event_name):
+    db = get_database()
+    cursor = db.cursor()
+    cursor.execute('''INSERT INTO Reg_details (reg_number, name, email, contact, event_name) 
+                    VALUES (?, ?, ?, ?, ?)''', (reg_number, name, email, contact, event_name))
+    db.commit()
+
+def fetch_Reg_details():
+    db = get_database()
+    cursor = db.cursor()
+    cursor.execute('''SELECT * FROM Reg_details''')
+    rows = cursor.fetchall()
+    return rows
+
+def update_Reg_details(reg_number, name, email, contact, event_name):
+    db = get_database()
+    cursor = db.cursor()
+    cursor.execute('''UPDATE Reg_detailsSET reg_number=?, name=?, email=?, contact=?, event_name=?''', 
+                   (reg_number, name, email, contact, event_name))
+    db.commit()
+
+def delete_Reg_details(reg_number):
+    db = get_database()
+    cursor = db.cursor()
+    cursor.execute('''DELETE FROM Reg_details WHERE clb_name=?''', (reg_number,))
     db.commit()
 
 # Additional functions:

@@ -6,10 +6,12 @@ import os
 from authlib.integrations.flask_client import OAuth
 #-----------------setting up the app------------------
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET_KEY'
 app.secret_key = 'SECRET_KEY' #generate a secret key and use it here in this virtual env
 load_dotenv()
+
 
 #------------------------Database setup-----------------------------
 @app.before_request
